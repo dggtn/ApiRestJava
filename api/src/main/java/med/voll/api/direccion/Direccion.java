@@ -3,6 +3,8 @@ package med.voll.api.direccion;
 
 import jakarta.persistence.Embeddable;
 
+import java.util.Objects;
+
 @Embeddable
 public class Direccion {
     String calle;
@@ -18,6 +20,9 @@ public class Direccion {
         this.ciudad = ciudad;
         this.numero = numero;
         this.complemento = complemento;
+    }
+
+    public Direccion() {
     }
 
     public String getCalle() {
