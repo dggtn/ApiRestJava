@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/medicos")
 public class MedicoController {
 
-    @Autowired
+
     private MedicoRepository medicoRepository;
     @PostMapping
     public void registrarMedico(@RequestBody DatosRegistroMedico datosRegistroMedico){
         System.out.println(datosRegistroMedico);
 
+    }
+
+    public MedicoController(@Autowired MedicoRepository medicoRepository) {
+        this.medicoRepository = medicoRepository;
     }
 }
