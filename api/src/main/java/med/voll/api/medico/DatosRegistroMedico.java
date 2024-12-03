@@ -1,5 +1,6 @@
 package med.voll.api.medico;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,8 +16,9 @@ public record DatosRegistroMedico(
         @NotBlank
         @Pattern(regexp ="\\d{4,6}")
         String documento,
-        @NotBlank
+        @NotNull
         Especialidad especialidad,
         @NotNull
+        @Valid
         DatosDireccion direccion) {
 }
