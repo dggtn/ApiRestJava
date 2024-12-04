@@ -32,7 +32,7 @@ public class Medico {
     public Medico(DatosRegistroMedico datosRegistroMedico) {
         this.nombre = datosRegistroMedico.nombre();
         this.email = datosRegistroMedico.email();
-        this.activo=true;
+        this.activo = true;
         this.documento = datosRegistroMedico.documento();
         this.telefono = datosRegistroMedico.telefono();
         this.especialidad = datosRegistroMedico.especialidad();
@@ -40,21 +40,18 @@ public class Medico {
     }
 
 
-    public  void actualizarDatos(DatosActualizarMedico datosActualizarMedico){
-        if (datosActualizarMedico.nombre() !=null) {
+    public void actualizarDatos(DatosActualizarMedico datosActualizarMedico) {
+        if (datosActualizarMedico.nombre() != null) {
             this.nombre = datosActualizarMedico.nombre();
         }
-        if (datosActualizarMedico.documento() !=null) {
+        if (datosActualizarMedico.documento() != null) {
             this.documento = datosActualizarMedico.documento();
         }
-        if (datosActualizarMedico.direccion() !=null) {
+        if (datosActualizarMedico.direccion() != null) {
             this.direccion = direccion.actualizarDatos(datosActualizarMedico.direccion());
         }
-
-
-
-
     }
+
     public Long getId() {
         return id;
     }
