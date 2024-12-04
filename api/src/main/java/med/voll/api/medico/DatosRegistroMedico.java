@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import med.voll.api.direccion.DatosDireccion;
 
 public record DatosRegistroMedico(
+
         @NotBlank
         String nombre,
         @NotBlank
@@ -16,7 +17,7 @@ public record DatosRegistroMedico(
         @NotBlank
         String telefono,
         @NotBlank
-        @Pattern(regexp ="\\d{4,6}")
+        @Pattern(regexp = "\\d{4,6}")
         String documento,
         @NotNull
         Especialidad especialidad,
