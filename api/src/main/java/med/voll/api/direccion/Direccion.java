@@ -34,4 +34,7 @@ public class Direccion {
         this.ciudad = direccion.ciudad();
         return this;
     }
+
+    public void atualizarInformacion(DatosDireccion direccion) {
+    }
 }
