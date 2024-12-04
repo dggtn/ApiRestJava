@@ -30,7 +30,7 @@ public class MedicoController {
     }
 
     @PutMapping
-    public void actualizarMedico(DatosActualizarMedico datosActualizarMedico){
+    public void actualizarMedico(@RequestBody @Valid DatosActualizarMedico datosActualizarMedico){
     Medico medico = medicoRepository.getReferenceById(datosActualizarMedico.id());
     medico.actualizarDatos(datosActualizarMedico);
 
