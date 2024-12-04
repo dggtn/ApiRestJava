@@ -107,4 +107,8 @@ public class Medico {
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
+
+    public void desactivarMedico(Medico medico) {
+        medico.activo=false;
+    }
 }
