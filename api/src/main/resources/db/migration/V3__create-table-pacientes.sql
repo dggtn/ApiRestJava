@@ -13,4 +13,3 @@ create table pacientes(
     ciudad varchar(100) not null,
 
     primary key(id)
-);
