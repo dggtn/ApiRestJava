@@ -14,20 +14,12 @@ public class Medico {
     private Long id;
     private String nombre;
     private String email;
+    private String telefono;
     private String documento;
     @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
     @Embedded
     private Direccion direccion;
-
-    public Medico(Long id, String nombre, String email, String documento, Especialidad especialidad, Direccion direccion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.documento = documento;
-        this.especialidad = especialidad;
-        this.direccion = direccion;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -99,6 +91,7 @@ public class Medico {
         this.documento = datosRegistroMedico.documento();
         this.especialidad = datosRegistroMedico.especialidad();
         this.direccion = new Direccion(datosRegistroMedico.direccion());
+        this.telefono = datosRegistroMedico.telefono();
 
     }
 }
