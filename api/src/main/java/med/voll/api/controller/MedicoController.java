@@ -74,7 +74,7 @@ public class MedicoController {
     @Transactional
     public ResponseEntity eliminarMedico(@PathVariable Long id) {
         Medico medico = medicoRepository.getReferenceById(id);
-        medico.desactivarMedico(medico);
+        medico.desactivarMedico();
         return ResponseEntity.noContent().build();
     }
 
