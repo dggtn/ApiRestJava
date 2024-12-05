@@ -33,7 +33,7 @@ public class MedicoController {
         URI url = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
         return ResponseEntity.created(url).body(datosRespuestaMedico);
 
-        //Para cumplir con las buenas practicas debo hacer esto:
+        //Para cumplir con las buenas practicas agregue:
         //Return 201 created
         //URL donde encontrar al medico
         //GET http://localhost:8080/medicos/id
