@@ -8,20 +8,22 @@ import jakarta.validation.constraints.Pattern;
 import med.voll.api.domain.direccion.DatosDireccion;
 
 public record DatosRegistroMedico(
-
-        @NotBlank
+        @NotBlank(message = "Nombre es obligatorio")
         String nombre,
-        @NotBlank
-        @Email
+
+        @NotBlank(message = "Email es obligatorio")
+        @Email(message = "Formato de email es inválido")
         String email,
-        @NotBlank
+
+        @NotBlank(message = "Teléfono es obligatorio")
         String telefono,
-        @NotBlank
-        @Pattern(regexp = "\\d{4,6}")
-        String documento,
-        @NotNull
+
+        @NotBlank(message = "CRM es obligatorio")
+        @Pattern(regexp = "\\d{4,6}", message = "Formato do CRM es inválido")
+        String crm,
+
+        @NotNull(message = "Especialidad es obligatorio")
         Especialidad especialidad,
-        @NotNull
-        @Valid
-        DatosDireccion direccion) {
-}
+
+        @NotNull(message = "Datos de dirección son obligatorios")
+        @Valid DatosDireccion direccion) {}
