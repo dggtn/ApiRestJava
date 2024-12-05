@@ -1,8 +1,10 @@
 
-package med.voll.api.paciente;
+package med.voll.api.domain.paciente;
 
-public record DatosListaPaciente(Long id, String nombre, String email, String documentoIdentidad) {
+
+public record DatosListaPaciente(Long id, String nombre, String email, String documento) {
+
     public DatosListaPaciente(Paciente paciente) {
-        this(paciente.getId(), paciente.getNombre(), paciente.getEmail(), paciente.getDocumentoIdentidad());
+        this(paciente.getId(), paciente.getNombre(), paciente.getEmail(), paciente.getDocumento());
     }
 }
