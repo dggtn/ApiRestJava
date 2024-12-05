@@ -30,26 +30,13 @@ public class Medico {
     private Direccion direccion;
 
     public Medico(DatosRegistroMedico datosRegistroMedico) {
+        this.activo = true;
         this.nombre = datosRegistroMedico.nombre();
         this.email = datosRegistroMedico.email();
-        this.activo = true;
         this.documento = datosRegistroMedico.documento();
         this.telefono = datosRegistroMedico.telefono();
         this.especialidad = datosRegistroMedico.especialidad();
         this.direccion = new Direccion(datosRegistroMedico.direccion());
-    }
-
-
-    public void actualizarDatos(DatosActualizarMedico datosActualizarMedico) {
-        if (datosActualizarMedico.nombre() != null) {
-            this.nombre = datosActualizarMedico.nombre();
-        }
-        if (datosActualizarMedico.documento() != null) {
-            this.documento = datosActualizarMedico.documento();
-        }
-        if (datosActualizarMedico.direccion() != null) {
-            this.direccion = direccion.actualizarDatos(datosActualizarMedico.direccion());
-        }
     }
 
     public Long getId() {
@@ -92,6 +79,14 @@ public class Medico {
         this.documento = documento;
     }
 
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
     public Especialidad getEspecialidad() {
         return especialidad;
     }
@@ -108,7 +103,19 @@ public class Medico {
         this.direccion = direccion;
     }
 
-    public void desactivarMedico(Medico medico) {
-        medico.activo=false;
+    public void actualizarDatos(DatosActualizarMedico datosActualizarMedico) {
+        if (datosActualizarMedico.nombre() != null) {
+            this.nombre = datosActualizarMedico.nombre();
+        }
+        if (datosActualizarMedico.documento() != null) {
+            this.documento = datosActualizarMedico.documento();
+        }
+        if (datosActualizarMedico.direccion() != null) {
+            this.direccion = direccion.actualizarDatos(datosActualizarMedico.direccion());
+        }
+    }
+
+    public void desactivarMedico() {
+        this.activo = false;
     }
 }
