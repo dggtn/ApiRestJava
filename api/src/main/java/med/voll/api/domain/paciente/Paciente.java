@@ -1,6 +1,7 @@
 package med.voll.api.paciente;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -99,5 +100,11 @@ public class Paciente {
 
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+    }
+
+    public void actualizarInformacion(@Valid DatosActualizacionPaciente datos) {
+    }
+
+    public void eliminar() {
     }
 }
