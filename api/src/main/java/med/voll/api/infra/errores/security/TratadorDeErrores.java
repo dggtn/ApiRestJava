@@ -16,7 +16,8 @@ public class TratadorDeErrores {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity tratarError400(){
-        return ResponseEntity.badRequest().build();
+    public ResponseEntity tratarError400(MethodArgumentNotValidException e){
+        var errores = e.getFieldError();
+        return ResponseEntity.badRequest().body(errores);
     }
 }
