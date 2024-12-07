@@ -59,7 +59,7 @@ public class MedicoController {
 
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/{id}")
     @Transactional
     public ResponseEntity<DatosRespuestaMedico> retornaDatosMedico(@PathVariable Long id) {
         Medico medico = medicoRepository.getReferenceById(id);
