@@ -1,9 +1,9 @@
 package med.voll.api.domain.usuario;
 
-import org.springframework.data.repository.CrudRepository;
+import med.voll.api.domain.usuario.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public interface UsuarioRepository extends CrudRepository<Usuario,Long> {
-
-   static UserDetails findByUsername(String username);
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    UserDetails findByLogin(String username);
 }
