@@ -13,11 +13,11 @@ public class TokenService {
     public String generarToken(){
         try {
             Algorithm algorithm = Algorithm.HMAC256("123456");
-            String token = JWT.create()
+            return JWT.create()
                     .withIssuer("auth0")
                     .sign(algorithm);
         } catch (JWTCreationException exception){
-            // Invalid Signing configuration / Couldn't convert Claims.
+            throw new RuntimeException();
         }
     }
 }
