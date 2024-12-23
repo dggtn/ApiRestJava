@@ -14,7 +14,8 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256("123456");
             return JWT.create()
-                    .withIssuer("auth0")
+                    .withIssuer("voll med")
+                    .withSubject("diego.rojas")
                     .sign(algorithm);
         } catch (JWTCreationException exception){
             throw new RuntimeException();
