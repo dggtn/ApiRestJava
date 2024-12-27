@@ -13,17 +13,24 @@ import med.voll.api.domain.direccion.Direccion;
 @AllArgsConstructor
 @Entity(name = "Paciente")
 @Table(name = "pacientes")
-public class Paciente {@Id
+public class Paciente {
+    @Getter
+    @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
+    @Getter
     private String nombre;
+    @Getter
     private String email;
     private String documentoIdentidad;
+    @Getter
     private String telefono;
+    @Getter
     @Embedded
     private Direccion direccion;
 
+    @Getter
     private Boolean activo;
 
     public Paciente(DatosRegistroPaciente datos) {
@@ -50,24 +57,12 @@ private Long id;
         this.activo = false;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
@@ -82,24 +77,12 @@ private Long id;
         this.documentoIdentidad = documentoIdentidad;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public Direccion getDireccion() {
-        return direccion;
-    }
-
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
-    }
-
-    public Boolean getActivo() {
-        return activo;
     }
 
     public void setActivo(Boolean activo) {
