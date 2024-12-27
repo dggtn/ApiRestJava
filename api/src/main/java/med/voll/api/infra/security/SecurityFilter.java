@@ -22,18 +22,26 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioRepository usuarioRepository;
 
+
+    //metodo para autenticar y verificar que usuario existe
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var tokenJWT = recuperarToken(request);
+        var authHeader = request.getHeader("Authorization");
+        System.out.println(authHeader);
 
-        if (tokenJWT != null) {
-            var subject = tokenService.getSubject(tokenJWT);
-            var usuario = repository.findByLogin(subject);
-
-            var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (authHeader != null) {
+            System.out.println("Validamos que el authHeader no es null");
+            var token = authHeader.replace(("Bearer"),"");
+            var nombreDeUsuario = tokenService.getSubject(token); //extract userName
+            if(nombreDeUsuario !=null){
+                //token valido
+                var usuario = usuarioRepository.findByLogin(nombreDeUsuario);
+                var authentication = new UsernamePasswordAuthenticationToken(usuario,null,
+                        usuario.getAuthorities()); //forzamos inicio de sesion
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
 
         filterChain.doFilter(request, response);
