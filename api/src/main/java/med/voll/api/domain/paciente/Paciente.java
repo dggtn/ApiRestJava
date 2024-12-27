@@ -7,23 +7,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.direccion.Direccion;
 
-@Table(name = "pacientes")
-@Entity(name = "Paciente")
 @Getter
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Paciente {
+@Entity(name = "Paciente")
+@Table(name = "pacientes")
+public class Paciente {@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String nombre;
     private String email;
+    private String documentoIdentidad;
     private String telefono;
-    private String documento;
     @Embedded
     private Direccion direccion;
+
     private Boolean activo;
 
     public Paciente(DatosRegistroPaciente datos) {
@@ -31,23 +31,22 @@ public class Paciente {
         this.nombre = datos.nombre();
         this.email = datos.email();
         this.telefono = datos.telefono();
-        this.documento = datos.documento();
+        this.documentoIdentidad = datos.documento();
         this.direccion = new Direccion(datos.direccion());
     }
 
-    public void actualizarInformaciones(DatosActualizacionPaciente datos) {
-        if (datos.nombre() != null) {
+    public void atualizarInformacion(DatosActualizacionPaciente datos) {
+        if (datos.nombre() != null)
             this.nombre = datos.nombre();
-        }
-        if (datos.telefono() != null) {
+
+        if (datos.telefono() != null)
             this.telefono = datos.telefono();
-        }
-        if (datos.direccion() != null) {
-            this.direccion.actualizarDatos(datos.direccion());
-        }
+
+        if (datos.direccion() != null)
+            direccion.actualizarDatos(datos.direccion());
     }
 
-    public void eliminar() {
+    public void inactivar() {
         this.activo = false;
     }
 
@@ -75,20 +74,20 @@ public class Paciente {
         this.email = email;
     }
 
+    public String getDocumento() {
+        return documentoIdentidad;
+    }
+
+    public void setDocumentoIdentidad(String documentoIdentidad) {
+        this.documentoIdentidad = documentoIdentidad;
+    }
+
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
     }
 
     public Direccion getDireccion() {
