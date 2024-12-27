@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import med.voll.api.domain.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -34,17 +35,25 @@ public class TokenService {
         }
     }
 
-    public String getSubject(String tokenJWT) {
+    public String getSubject(String token) {
+        if(token == null){
+            throw new RuntimeException();
+        }
+        DecodedJWT verifier =null;
         try {
-            var algoritmo = Algorithm.HMAC256(secret);
-            return JWT.require(algoritmo)
+            Algorithm algoritm = Algorithm.HMAC256(secret);
+           verifier = JWT.require(algoritm)
                     .withIssuer("API Voll.med")
                     .build()
-                    .verify(tokenJWT)
-                    .getSubject();
+                    .verify(token);
+                  verifier.getSubject();
         } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Token JWT inválido o expirado!");
+            System.out.println(exception.toString());
         }
+        if(verifier.getSubject()==null){
+            throw new RuntimeException("Verifier invalido");
+        }
+        return verifier.getSubject();
     }
 
     private Instant fechaExpiracion() {
