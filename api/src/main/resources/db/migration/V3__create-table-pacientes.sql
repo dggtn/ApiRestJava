@@ -10,7 +10,7 @@ complemento varchar(100),
 numero varchar(20),
 ciudad varchar(100) not null,
 
-activo tinyint not null,
+
 
 primary key(id)
 
