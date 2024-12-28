@@ -61,6 +61,7 @@ public class MedicoController {
     }
 
     @GetMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<DatosRespuestaMedico> retornaDatosMedico(@PathVariable Long id) {
         Medico medico = medicoRepository.getReferenceById(id);
         var datosMedico = new DatosRespuestaMedico(medico.getId(), medico.getNombre(), medico.getEmail(), medico.getTelefono(), medico.getEspecialidad().toString(),
@@ -75,14 +76,9 @@ public class MedicoController {
     public ResponseEntity eliminarMedico(@PathVariable Long id) {
         Medico medico = medicoRepository.getReferenceById(id);
         medico.desactivarMedico();
+        
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}")
-    @Secured("ROLE_ADMIN")
-    public ResponseEntity detallar(@PathVariable Long id) {
-        var medico = medicoRepository.getReferenceById(id);
-        return ResponseEntity.ok(new DatosListadoMedico(medico));
-    }
 
 }
